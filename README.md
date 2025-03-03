@@ -2,13 +2,13 @@
 
 
  
-## NAME: SINGAMALA VENKATA SAI KUMAR REDDY
+## NAME: SINGAMALA VENKTATA SAI KUMAR REDDY
 
-## DEPARTMENT:AI&DS
+## DEPARTMENT: AI&DS
 
 ## ROLL NO: 212223230208
 
-## DATE OF EXPERIMENT: 03-03-2025
+## DATE OF EXPERIMENT: 03/03/2025
 
 ## AIM
 
@@ -54,7 +54,7 @@ A MicroPython script reads the switch states and controls the LEDs accordingly.
  ![image](https://github.com/user-attachments/assets/1c7234b9-5041-4156-94b8-0b846adb6b8e)
 
  
-   Figure-01 circuit diagram of digital input interface 
+ Figure-01 circuit diagram of digital input interface 
 
 
 Connect switch 1 to GP2 and switch 2 to GP3.
@@ -66,105 +66,59 @@ Connect LED 2 to GP17 via a 330Ω resistor.
 Connect the other terminals of the switches to GND.
 
 ## PROGRAM (MicroPython)
-''''
+```
 from machine import Pin
-
 from time import sleep
 
+switch1 = Pin(2,Pin.IN)
+switch2 = Pin(3,Pin.IN)
 
-
-# Define switches as input pins
-
-switch1 = Pin(2, Pin.IN)
-
-switch2 = Pin(3, Pin.IN)
-
-
-
-# Define LEDs as output pins
-
-led = Pin(15, Pin.OUT)
-
-led2 = Pin(16, Pin.OUT)
-
-
-
+led1 = Pin(15,Pin.OUT)
+led2 = Pin(16,Pin.OUT)
 while True:
-
-    # Read switch states
-
     sw1_state = switch1.value()
-
     sw2_state = switch2.value()
 
+    print("Switch 1 State:",sw1_state)
+    print("Switch 2 State:",sw2_state)
+    led1.value(0)
 
-
-    # Print switch states
-
-    print("Switch 1 State:", sw1_state)
-
-    print("Switch 2 State:", sw2_state)
-
-
-
-    # Turn off LED initially
-
-    led.value(0)
-
-
-
-    if sw1_state == 1 and sw2_state == 1:
-
-        led.value(1)
-
-        led2.value(1)
-
-    elif sw1_state == 1:
-
-        led.value(1)
-
-        sleep(0.5)
-
-        led.value(0)
-
+    if sw1_state==1 and sw2_state==1:
+        led1.value(0)
         led2.value(0)
 
-    elif sw2_state == 1:
-
-        led.value(0)
-
-        led2.value(1)
-
+    elif sw1_state==1:
+        led1.value(1)
         sleep(0.5)
-
+        led1.value(0)
         led2.value(0)
 
+    elif sw2_state==1:
+        led1.value(0)
+        led2.value(1)
         sleep(0.5)
+        led2.value(0)
 
- 
-
+    sleep(0.5)
+        
+```
 ## OUTPUT
-### FIGURE-01: CIRCUIT CONNECTION
-![Screenshot 2025-03-03 111947](https://github.com/user-attachments/assets/cc4f5a43-6d69-4415-a3b5-2f75c60f4e4c)
 
+## CIRCUIT CONNECTION:
 
-### FIGURE-02: SWITCH 1 ON
+![image](https://github.com/user-attachments/assets/48ff68c9-4942-4f58-97f5-cc43af8b8b03)
 
-![Screenshot 2025-03-03 110900](https://github.com/user-attachments/assets/f4204da2-6e3a-473c-9c33-e643fba11555)
+## SWITCH 1 ON:
 
-### FIGURE-03: SWITCH 2 ON
+![Screenshot 2025-03-03 105154](https://github.com/user-attachments/assets/6703bd7c-4458-46a7-852b-d4a239e20e55)
 
-![Screenshot 2025-03-03 110831](https://github.com/user-attachments/assets/a39c072d-c7e8-4281-9d75-fb9999ecd25c)
+## SWITCH 2 ON:
 
-### FIGURE-04: BOTH SWITCH ON
-![Screenshot 2025-03-03 110801](https://github.com/user-attachments/assets/a866d8be-4084-4a3a-a746-5f7bd5b93a35)
+![Screenshot 2025-03-03 105225](https://github.com/user-attachments/assets/02ae0605-bea5-42bf-a391-f2865a299ab9)
 
+## BOTH SWITCH ON:
 
-## TIMING DIGAGRAM 
-
-
-UPLOAD YOUR TIMING DIGARAM HERE 
-
+![Screenshot 2025-03-03 105242](https://github.com/user-attachments/assets/38d72ff6-31bd-47ee-a032-ccc88d884aff)
 
 
 ## RESULTS
